@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="agregar.css">
+    <script defer src="agregar.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+        <aside class="sidebar">
+            <!-- mismo menú que en panel.html -->
+        </aside>
+        <main class="main-content"></main>
+        <div id="formulario-agregar" class="form-container">
+            <h2>Agregar Producto o Servicio</h2>
+            <form id="form-producto">
+            <label for="nombre">Nombre del ítem:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" name="tipo" required>
+                <option value="">Seleccione un tipo</option>
+                <option value="Producto">Producto</option>
+                <option value="Servicio">Servicio</option>
+            </select>
+
+
+            <label>Categoria:</label>
+            <select id="categoria" name="Categoria" required>
+
+            </select>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+        
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" required>
+            <label for="imagen">Ingrese la imagen:</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*" required>
+        
+            <button type="submit" id="btn-agregar">Agregar Producto</button>
+            </form>
+            <button id="btn-cancelar">Cancelar</button>
+        </div>
+        </main>
+    <script src="menu.js"></script>
+</body>
+</html>
