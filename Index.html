@@ -1,0 +1,165 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>InkaMarket - Inicio</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Panel de navegación -->
+  <header class="navbar">
+    <div class="logo">InkaMarket</div>
+    <nav class="nav-opciones">
+      <!-- Futuras opciones -->
+    </nav>
+    <div class="nav-login">
+      <a href="login.html">Login</a>
+    </div>
+  </header>
+
+  <!-- Texto de bienvenida -->
+  <section class="bienvenida">
+    <h1 id="titulo">Bienvenido a InkaMarket</h1>
+    <p>Descubre y apoya a emprendedores locales desde una sola plataforma.</p>
+  </section>
+
+
+<!-- Carruseles por categorías -->
+<section class="categoria">
+  <h2><a href="ListadoProducto.html" style="text-decoration: none; color: inherit;">Artesanías</a></h2>
+  <div class="carrusel">
+    <img src="img/artesania1.jpg" alt="Producto 1">
+    <img src="img/artesania2.jpg" alt="Producto 2">
+    <img src="img/artesania3.jpg" alt="Producto 3">
+  </div>
+</section>
+
+<section class="categoria">
+  <h2><a href="ListadoProducto.html" style="text-decoration: none; color: inherit;">Alimentos y Bebidas</a></h2>
+  <div class="carrusel">
+    <img src="img/comida1.jpg" alt="Comida 1">
+    <img src="img/comida2.jpg" alt="Comida 2">
+    <img src="img/comida3.jpg" alt="Comida 3">
+  </div>
+</section>
+
+<section class="categoria">
+  <h2><a href="ListadoProducto.html" style="text-decoration: none; color: inherit;">Moda</a></h2>
+  <div class="carrusel">
+    <img src="img/artesania1.jpg" alt="Producto 1">
+    <img src="img/artesania2.jpg" alt="Producto 2">
+    <img src="img/artesania3.jpg" alt="Producto 3">
+  </div>
+</section>
+
+<section class="categoria">
+  <h2><a href="ListadoProducto.html" style="text-decoration: none; color: inherit;">Hogar y Decoración</a></h2>
+  <div class="carrusel">
+    <img src="img/artesania1.jpg" alt="Producto 1">
+    <img src="img/artesania2.jpg" alt="Producto 2">
+    <img src="img/artesania3.jpg" alt="Producto 3">
+  </div>
+</section>
+
+<section class="categoria">
+  <h2><a href="ListadoProducto.html" style="text-decoration: none; color: inherit;">Tecnología y Electrónica</a></h2>
+  <div class="carrusel">
+    <img src="img/artesania1.jpg" alt="Producto 1">
+    <img src="img/artesania2.jpg" alt="Producto 2">
+    <img src="img/artesania3.jpg" alt="Producto 3">
+  </div>
+</section>
+
+<section class="categoria">
+  <h2><a href="ListadoProducto.html" style="text-decoration: none; color: inherit;">Deportes</a></h2>
+  <div class="carrusel">
+    <img src="img/artesania1.jpg" alt="Producto 1">
+    <img src="img/artesania2.jpg" alt="Producto 2">
+    <img src="img/artesania3.jpg" alt="Producto 3">
+  </div>
+</section>
+
+<section class="categoria">
+  <h2><a href="ListadoProducto.html" style="text-decoration: none; color: inherit;">Juguetes</a></h2>
+  <div class="carrusel">
+    <img src="img/artesania1.jpg" alt="Producto 1">
+    <img src="img/artesania2.jpg" alt="Producto 2">
+    <img src="img/artesania3.jpg" alt="Producto 3">
+  </div>
+</section>
+
+<section class="categoria">
+  <h2><a href="ListadoProducto.html" style="text-decoration: none; color: inherit;">Consultoría</a></h2>
+  <div class="carrusel">
+    <img src="img/artesania1.jpg" alt="Producto 1">
+    <img src="img/artesania2.jpg" alt="Producto 2">
+    <img src="img/artesania3.jpg" alt="Producto 3">
+  </div>
+</section>
+
+<section class="categoria">
+  <h2><a href="ListadoProducto.html" style="text-decoration: none; color: inherit;">Educación</a></h2>
+  <div class="carrusel">
+    <img src="img/artesania1.jpg" alt="Producto 1">
+    <img src="img/artesania2.jpg" alt="Producto 2">
+    <img src="img/artesania3.jpg" alt="Producto 3">
+  </div>
+</section>
+
+
+
+
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 InkaMarket</p>
+    <div class="redes">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+    </div>
+  </footer>
+
+</body>
+
+<script>
+  const texto = "Bienvenido a InkaMarket";
+  const titulo = document.getElementById("titulo");
+  let i = 0;
+  let escribiendo = true;
+
+  function escribirBorrar() {
+    if (escribiendo) {
+      if (i <= texto.length) {
+        titulo.textContent = texto.substring(0, i);
+        i++;
+        setTimeout(escribirBorrar, 100);
+      } else {
+        escribiendo = false;
+        setTimeout(escribirBorrar, 1500); // espera antes de borrar
+      }
+    } else {
+      if (i >= 0) {
+        titulo.textContent = texto.substring(0, i);
+        i--;
+        setTimeout(escribirBorrar, 50);
+      } else {
+        escribiendo = true;
+        setTimeout(escribirBorrar, 500); // espera antes de volver a escribir
+      }
+    }
+  }
+
+  escribirBorrar();
+</script>
+
+
+</html>

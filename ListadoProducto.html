@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Productos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tienda-container">
+        <nav class="barra-navegacion">
+            <div class="nav-wrapper">
+                <button class="boton-regresar" onclick="window.location.href='index.html'">
+                    <span class="icono-flecha">←</span>
+                  </button>
+                  
+                <h1>Inicio</h1>
+            </div>
+        </nav>
+        <div class="tienda-contenido">
+            <aside class="panel-filtros">
+                <h2>Filtros</h2>
+                <div class="grupo-filtro">
+                    <label>Selecciona categoría</label>
+                    <select id="categoria-select">
+                        <option value="Todos">Todos</option>
+                        <option value="Ropa">Ropa</option>
+                        <option value="Comida">Comida</option>
+                        <option value="Tecnología">Tecnología</option>
+                        <option value="Accesorios">Accesorios</option>
+                        <option value="Artesanías">Artesanías</option>
+                    </select>
+                </div>
+                <div class="grupo-filtro">
+                    <label>Precio máximo <span class="etiqueta-precio" id="precio-valor">S/ 100</span></label>
+                    <input
+                        type="range"
+                        min="0"
+                        max="200"
+                        value="100"
+                        id="precio-range"
+                    />
+                </div>
+                <div class="categoria-seleccionada">
+                    <span>Categoria Actual:</span>
+                    <h3 id="categoria-actual">Todos</h3>
+                </div>
+            </aside>
+            <main class="vitrina-productos">
+                <h2>Artículos en exhibición</h2>
+                <div class="grid-productos" id="grid-productos">
+                    <!-- Los productos se cargarán dinámicamente aquí -->
+                </div>
+                <div class="sin-productos" id="sin-productos" style="display: none;">
+                    <p>No se encontraron artículos con estos filtros</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="productosData.js"></script>
+    <script src="ListadoProducto.js"></script>
+
+</body>
+</html>

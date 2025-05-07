@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentPage = window.location.pathname.split('/').pop();
     
     const menuItems = [
-      { href: "productos.html", icon: "fa-box", text: "Mi Catalogo" },
-      { href: "agregar.html", icon: "fa-plus-circle", text: "Agregar" },
+      { href: "productos.html", icon: "fa-box", text: "Mi Catálogo" },
+      { href: "agregar.html", icon: "fa-plus-circle", text: "Agregar Ítem" },
       { href: "perfil.html", icon: "fa-user", text: "Perfil" },
       { href: "opiniones.html", icon: "fa-star", text: "Opiniones" },
-      { href: "../login.html", icon: "fa-sign-out-alt", text: "Cerrar Sesión", class: "logout" }
+      { href: "login.html", icon: "fa-sign-out-alt", text: "Cerrar Sesión", class: "logout" }
     ];
   
     const menuHTML = `
@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!sidebar.querySelector('.sidebar-header')) {
         sidebar.insertAdjacentHTML('afterbegin', `
           <div class="sidebar-header">
-            <img src="../img/perfil.jpg" alt="Logo" class="sidebar-logo">
-            <h3>Mi Emprendimiento</h3>
+            <img src="img/perfil.jpg" alt="Logo" class="sidebar-logo">
+            <h3>InkaMarket</h3>
           </div>
         `);
       }

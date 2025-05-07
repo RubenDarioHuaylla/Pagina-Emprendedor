@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const categoriaSelect = document.getElementById("categoria");
 
     const categorias = {
-        Producto: ["Electrónica", "Ropa", "Hogar", "Alimentos", "Juguetes", "Bebidas", "Macotas"],
+        Producto: ["Artesanías", "Tecnología y Electrónica", "Moda", "Hogar y Decoración", "Alimentos y Bebidas", "Juguetes", "Deportes"],
         Servicio: ["Consultoría", "Reparaciones", "Diseño", "Transporte", "Educación"]
     };
 
