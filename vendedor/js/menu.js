@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentPage = window.location.pathname.split('/').pop();
     
     const menuItems = [
-      { href: "productos.html", icon: "fa-box", text: "Mis Productos" },
-      { href: "agregar.html", icon: "fa-plus-circle", text: "Agregar Producto" },
+      { href: "productos.html", icon: "fa-box", text: "Mi Catalogo" },
+      { href: "agregar.html", icon: "fa-plus-circle", text: "Agregar" },
       { href: "perfil.html", icon: "fa-user", text: "Perfil" },
       { href: "opiniones.html", icon: "fa-star", text: "Opiniones" },
       { href: "../login.html", icon: "fa-sign-out-alt", text: "Cerrar Sesión", class: "logout" }
