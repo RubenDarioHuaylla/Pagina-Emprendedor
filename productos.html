@@ -1,0 +1,35 @@
+<!-- dashboard/productos.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mis Productos</title>
+  <link rel="stylesheet" href="productos.css"> <!-- CSS específico de productos -->
+  <link rel="stylesheet" href="layout.css">  <!-- el CSS del sidebar  -->
+  <script defer src="productos.js"></script>
+  <script src="menu.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar común a todas las páginas -->
+    <aside class="sidebar">
+      <!-- El contenido del menú será dinámico, se carga desde el script menu.js -->
+    </aside>
+
+    <!-- Contenido principal, aquí se listan los productos -->
+    <main class="main-content">
+
+        <div class="productos-header">
+            <h1>Mis Productos y Servicios</h1>
+            <a class="btn-agregar" href="agregar.html">+ Agregar Nuevo Ítem</a>
+        </div>
+          
+      <section id="lista-productos" class="productos-lista">
+        <!-- Aquí se cargarán los productos desde productos.js -->
+      </section>
+    </main>
+  </div>
+</body>
+</html>
+
