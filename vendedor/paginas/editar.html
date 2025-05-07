@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Producto</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/editar.js"></script>
+  <link rel="stylesheet" href="../css/editar.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <script src="../js/menu.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <!-- mismo menú que en panel.html -->
+        </aside>
+
+        <h1>Editar </h1>
+
+        <form id="form-editar">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" placeholder="Nombre" required>
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" name="tipo" required>
+            </select>
+
+            <label>Categoria:</label>
+            <select id="categoria" name="categoria" required>
+            </select>
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" placeholder="Descripción" required>
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio"  step="0.01" min="0" required>
+            <label for="imagen">Imagen:</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*" >
+            <img id="preview-imagen" src="" alt="Imagen del producto" style="max-width: 100px; max-height: 100px;" />
+            <button type="submit">Guardar Cambios</button>
+            <button type="button" id="btn-cancelar">Cancelar</button>
+        </form>
+    </div>
+</body>
+</html>
