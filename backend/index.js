@@ -1,9 +1,13 @@
 
 const express = require('express');
 require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
 app.use(express.json()); // Para parsear JSON
+// cors sirve para permitir solicitudes desde otros dominios
+// En producción, deberías configurar CORS para permitir solo dominios específicos
+app.use(cors()); // Habilitar CORS
 
 // Rutas
 const authRoutes = require('./routes/auth.routes');
