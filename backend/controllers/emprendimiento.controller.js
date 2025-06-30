@@ -90,10 +90,8 @@ exports.actualizarEmprendimiento = async (req, res) => {
 
 exports.obtenerEmprendimiento = async (req, res) => {
   try {
-    console.log('Usuario del token:', req.usuario); // Debug: Verifica los datos del token
     // Verificar que el usuario tenga el rol de emprendedor
     const emprendimiento = await Emprendimiento.buscarPorUsuario(req.usuario.id);
-    console.log('Emprendimiento encontrado:', emprendimiento); // Debug: Verifica el emprendimiento encontrado
     
     if (!emprendimiento) {
       return res.status(404).json({ emprendimiento: null });
