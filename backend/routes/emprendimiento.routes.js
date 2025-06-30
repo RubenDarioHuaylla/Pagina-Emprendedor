@@ -10,13 +10,13 @@ router.post('/',
 );
 
 // Ruta para listar emprendimientos del usuario logueado
-router.get('/mis', 
+router.get('/mio', 
   authMiddleware, 
-  controller.listarEmprendimientos
+  controller.obtenerEmprendimiento
 );
 
 // Ruta para obtener un emprendimiento por ID
-router.put('/:id', authMiddleware, controller.actualizarEmprendimiento);
+router.put('/mio', authMiddleware, controller.actualizarEmprendimiento);
 
 
 module.exports = router;

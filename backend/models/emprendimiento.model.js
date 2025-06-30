@@ -54,14 +54,14 @@ const Emprendimiento = {
     await pool.query(sql, valores);
   },
   // Obtener todos los emprendimientos de un usuario
-  listarPorUsuario: async (id_usuario) => {
+  buscarPorUsuario: async (id_usuario) => {
     const [rows] = await pool.query(
       `SELECT *
        FROM Emprendimientos 
        WHERE id_usuario = ?`,
       [id_usuario]
     );
-    return rows;
+    return rows[0]; // Devuelve el primer resultado o undefined
   }
 };
 

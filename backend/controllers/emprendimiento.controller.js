@@ -56,22 +56,18 @@ exports.crearEmprendimiento = async (req, res) => {
 
 exports.actualizarEmprendimiento = async (req, res) => {
   try {
-    const id_emprendimiento = req.params.id;
-    const id_usuario_token = req.usuario.id; // Obtenido desde el token JWT
+    
+    const id_usuario = req.usuario.id; // Obtenido desde el token JWT
 
-    // Validar que el emprendimiento sea del usuario autenticado
-    const existente = await Emprendimiento.buscarPorId(id_emprendimiento);
+    // Buscar emprendimiento por el ID del usuario autenticado
+    const existente = await Emprendimiento.buscarPorUsuario(id_usuario);
 
     if (!existente) {
-      return res.status(404).json({ error: 'Emprendimiento no encontrado' });
-    }
-
-    if (existente.id_usuario !== id_usuario_token) {
-      return res.status(403).json({ error: 'No tienes permisos para modificar este emprendimiento' });
+      return res.status(404).json({ error: 'Emprendimiento no registrado' });
     }
 
     // Solo los campos que se van a actualizar
-    const camposActualizables = {
+    const camposActualizables = { 
       nombre_negocio: req.body.nombre_negocio,
       descripcion: req.body.descripcion,
       logo_url: req.body.logo_url,
@@ -83,7 +79,7 @@ exports.actualizarEmprendimiento = async (req, res) => {
       whatsapp_url: req.body.whatsapp_url
     };
 
-    await Emprendimiento.actualizar(id_emprendimiento, camposActualizables);
+    await Emprendimiento.actualizar(existente.id_emprendimiento, camposActualizables);
 
     res.json({ message: 'Emprendimiento actualizado correctamente' });
   } catch (error) {
@@ -92,12 +88,19 @@ exports.actualizarEmprendimiento = async (req, res) => {
   }
 };
 
-exports.listarEmprendimientos = async (req, res) => {
+exports.obtenerEmprendimiento = async (req, res) => {
   try {
-    const emprendimientos = await Emprendimiento.listarPorUsuario(req.usuario.id);
-    res.json(emprendimientos);
+    console.log('Usuario del token:', req.usuario); // Debug: Verifica los datos del token
+    // Verificar que el usuario tenga el rol de emprendedor
+    const emprendimiento = await Emprendimiento.buscarPorUsuario(req.usuario.id);
+    console.log('Emprendimiento encontrado:', emprendimiento); // Debug: Verifica el emprendimiento encontrado
+    
+    if (!emprendimiento) {
+      return res.status(404).json({ emprendimiento: null });
+    }
+    res.json(emprendimiento);
   } catch (error) {
     console.error('Error al listar emprendimientos:', error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'Error del servidor al listar emprendimientos' });
   }
 };
