@@ -11,7 +11,9 @@ app.use(cors()); // Habilitar CORS
 
 // Rutas
 const authRoutes = require('./routes/auth.routes');
+const emprendimientoRoutes = require('./routes/emprendimiento.routes');
 app.use('/api/auth', authRoutes);
+app.use('/api/emprendimientos', emprendimientoRoutes);
 
 // Iniciar servidor
 const PORT = process.env.PORT || 4000;
