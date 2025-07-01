@@ -94,7 +94,7 @@ exports.obtenerEmprendimiento = async (req, res) => {
     const emprendimiento = await Emprendimiento.buscarPorUsuario(req.usuario.id);
     
     if (!emprendimiento) {
-      return res.status(404).json({ emprendimiento: null });
+      return res.status(200).json(null);
     }
     res.json(emprendimiento);
   } catch (error) {
@@ -102,3 +102,4 @@ exports.obtenerEmprendimiento = async (req, res) => {
     res.status(500).json({ error: 'Error del servidor al listar emprendimientos' });
   }
 };
+

@@ -4,6 +4,7 @@ const Usuario = require('../models/usuario.model');
 // Registro de usuario
 exports.registrar = async (req, res) => {
   try {
+    console.log('Datos del registro:', req.body); // Debug: Verifica los datos recibidos
     const { nombre, apellido, email, password, rol } = req.body;
     
     // Validación básica

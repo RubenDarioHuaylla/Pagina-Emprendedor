@@ -1,4 +1,5 @@
 const pool = require('../config/db');
+const { listar } = require('./categoria.model');
 
 const Emprendimiento = {
   // Crear emprendimiento
@@ -63,6 +64,8 @@ const Emprendimiento = {
     );
     return rows[0]; // Devuelve el primer resultado o undefined
   }
+
+
 };
 
 module.exports = Emprendimiento;
