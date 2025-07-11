@@ -34,9 +34,10 @@ exports.crearProductoServicio = async (req, res) => {
 
     });
 
+    productoCreado = await productoServicioModel.buscarPorId(id_producto_servicio);
+
     res.status(201).json({
-      message: 'Producto/Servicio creado exitosamente',id:
-      id_producto_servicio
+      message: 'Producto/Servicio creado exitosamente','data': productoCreado
     });
 
   } catch (error) {
@@ -62,6 +63,7 @@ exports.actualizarProductoServicio = async (req, res) => {
     }
 
     const datosActualizados = req.body;
+    delete datosActualizados.tipo_oferta;
 
     // Si hay imagen nueva
     if (req.file) {
@@ -70,7 +72,9 @@ exports.actualizarProductoServicio = async (req, res) => {
 
     await productoServicioModel.actualizar(id, datosActualizados);
 
-    res.json({ message: 'Producto/Servicio actualizado' });
+    productoActualizado = await productoServicioModel.buscarPorId(id);
+
+    res.json({ message: 'Producto/Servicio actualizado', 'data': productoActualizado });
   } catch (err) {
     console.error('Error al actualizar:', err);
     res.status(500).json({ error: 'Error del servidor' });
@@ -80,7 +84,7 @@ exports.actualizarProductoServicio = async (req, res) => {
 
 
 // Listar productos/servicios de un emprendimiento
-exports.listarProductosServicios = async (req, res) => {
+exports.listarMisProductosServicios = async (req, res) => {
   try {
     const usuarioId = req.usuario.id;
     const emprendimiento = await Emprendimiento.buscarPorUsuario(usuarioId);
@@ -147,3 +151,39 @@ exports.eliminarProductoServicio = async (req, res) => {
     res.status(500).json({ error: 'Error del servidor' });
   }
 };
+
+
+  // rutas publicas
+exports.listarProductosServicios = async (req, res) => {
+  try {
+
+    const filtros = {
+      q: req.query.q  || undefined,
+      categoria: req.query.categoria || undefined,
+      tipo: req.query.tipo || undefined,
+      orden: req.query.orden || undefined,
+      precio_min: Number(req.query.precio_min) || undefined,
+      precio_max: Number(req.query.precio_max) || undefined
+
+    };
+
+    const data = await productoServicioModel.listar(filtros);
+    res.json({ success: true, data });
+  } catch (err) {
+    console.log('error',err)
+    res.status(500).json({ success: false, error: 'Error al obtener productos' });
+  }
+};
+
+exports.detalleProductoServicio = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const info = await productoServicioModel.detalle(id);
+    const reseñas = await productoServicioModel.reseñas(id);
+    res.json({ success: true, data: { info, reseñas } });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Error al obtener detalle' });
+  }
+};
+
+

@@ -10,13 +10,13 @@ router.post('/',
   controller.crearEmprendimiento
 );
 
-// Ruta para listar emprendimientos del usuario logueado
+// Ruta para ver emprendimiento del usuario logueado
 router.get('/mio', 
   authMiddleware, 
   controller.obtenerEmprendimiento
 );
 
-// Ruta para obtener un emprendimiento por ID
+// Ruta par actualizar
 router.put('/mio', authMiddleware, controller.actualizarEmprendimiento);
 
 
@@ -32,6 +32,14 @@ router.post('/subir-logo', authMiddleware, upload.single('logo'), async (req, re
     res.status(500).json({ error: 'Error al subir imagen' });
   }
 });
+
+router.get('/destacados', controller.destacados);
+
+router.get('/', controller.listarEmprendimientos);
+router.get('/:id', controller.detalleEmprendimiento);
+
+
+
 
 module.exports = router;
 

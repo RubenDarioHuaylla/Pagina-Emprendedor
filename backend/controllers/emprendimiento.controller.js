@@ -1,5 +1,5 @@
 const Emprendimiento = require('../models/emprendimiento.model');
-
+const Producto = require('../models/producto_servicio.model');
 
 // Crear un nuevo emprendimiento
 // Solo los usuarios con rol 'emprendedor' pueden crear emprendimientos
@@ -22,7 +22,8 @@ exports.crearEmprendimiento = async (req, res) => {
       telefono_contacto,
       facebook_url,
       instagram_url,
-      whatsapp_url
+      whatsapp_url,
+      id_rubro
     } = req.body;
 
     if (!nombre_negocio) {
@@ -39,7 +40,8 @@ exports.crearEmprendimiento = async (req, res) => {
       telefono_contacto,
       facebook_url,
       instagram_url,
-      whatsapp_url
+      whatsapp_url,
+      id_rubro
     });
 
     res.status(201).json({
@@ -76,12 +78,15 @@ exports.actualizarEmprendimiento = async (req, res) => {
       telefono_contacto: req.body.telefono_contacto,
       facebook_url: req.body.facebook_url,
       instagram_url: req.body.instagram_url,
-      whatsapp_url: req.body.whatsapp_url
+      whatsapp_url: req.body.whatsapp_url,
+      id_rubro: req.body.id_rubro
     };
 
     await Emprendimiento.actualizar(existente.id_emprendimiento, camposActualizables);
 
-    res.json({ message: 'Emprendimiento actualizado correctamente' });
+    const empredimiento = await Emprendimiento.buscarPorId(existente.id_emprendimiento)
+
+    res.json({ message: 'Emprendimiento actualizado correctamente', 'data':  empredimiento});
   } catch (error) {
     console.error('Error al actualizar emprendimiento:', error);
     res.status(500).json({ error: 'Error del servidor' });
@@ -102,4 +107,62 @@ exports.obtenerEmprendimiento = async (req, res) => {
     res.status(500).json({ error: 'Error del servidor al listar emprendimientos' });
   }
 };
+
+
+  // rutas publicas
+
+exports.listarEmprendimientos = async (req, res) => {
+  try {
+    
+    const filtros = {
+      nombre: req.query.nombre || undefined,
+      rubro: req.query.rubro == 'todos' ? undefined : req.query.rubro,
+      valoracion_min: req.query.valoracion_min || undefined,
+      orden: req.query.orden || 'valoracion_desc'
+    };
+
+    const data = await Emprendimiento.listar(filtros);
+    res.json({ success: true, data });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Error al obtener emprendimientos' });
+  }
+};
+
+exports.detalleEmprendimiento = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const info = await Emprendimiento.detalle(id);
+    const productos = await Emprendimiento.listarProductos(id);
+    const reseñas = await Emprendimiento.reseñas(id);
+    res.json({ success: true, data: { info, productos, reseñas } });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Error al obtener detalle' });
+  }
+};
+
+// En tu controller (emprendimientoController.js)
+
+// emprendimientoController.js
+exports.destacados = async (req, res) => {
+  try {
+    const destacados = await Emprendimiento.destacados();
+    console.log('Datos obtenidos', destacados)
+    res.json({ 
+      success: true,
+      data: destacados // Envía directamente el array de emprendimientos
+    });
+  } catch (err) {
+    console.log('Error', err)
+    res.status(500).json({ 
+      success: false, 
+      error: 'Error al obtener destacados' 
+    });
+  }
+};
+
+
+
+
+
+
 

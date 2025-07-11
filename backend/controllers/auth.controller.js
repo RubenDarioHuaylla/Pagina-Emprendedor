@@ -24,24 +24,24 @@ exports.registrar = async (req, res) => {
 };
 
 // Login de usuario
-exports.login = async (req, res) => {
+exports.login = async (req, res) => {   
   try {
     const { email, password } = req.body;
-    const usuario = await Usuario.buscarPorEmail(email);
+    const usuario = await Usuario.buscarPorEmail(email); 
 
     if (!usuario || !(await Usuario.compararPassword(password, usuario.password_hash))) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
   // generar un token JWT
-  const token  = jwt.sign(
-    { id: usuario.id_usuario, email: usuario.email, rol: usuario.rol },
+  const token  = jwt.sign(  
+    { id: usuario.id_usuario, nombre: usuario.nombre, email: usuario.email, rol: usuario.rol },
     process.env.JWT_SECRET,
-    { expiresIn: '2h' } // El token expirará en 1 hora
+    { expiresIn: '6h' } // El token expirará en 6h hora
   );
 
   // Enviar el token al cliente
-  res.json({ message: 'Login exitoso',token, usuario: { id: usuario.id_usuario, email: usuario.email, rol: usuario.rol }});
+  res.json({ message: 'Login exitoso',token, usuario: { id: usuario.id_usuario, nombre: usuario.nombre, email: usuario.email, rol: usuario.rol }});
 
   } catch (error) {
     res.status(500).json({ error: error.message });

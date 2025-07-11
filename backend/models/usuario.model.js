@@ -25,6 +25,7 @@ const Usuario = {
   compararPassword: async (passwordIngresada, passwordHash) => {
     return await bcrypt.compare(passwordIngresada, passwordHash);
   },
+  
 
   // En models/Usuario.js
   // En models/Usuario.js

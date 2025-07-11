@@ -15,10 +15,14 @@ const authRoutes = require('./routes/auth.routes');
 const emprendimientoRoutes = require('./routes/emprendimiento.routes');
 const productoServicioRoutes = require('./routes/producto_servicio.routes');
 const categoriaRoutes = require('./routes/categoria.routes');
+const reseñaRoutes = require('./routes/reseña.routes');
+const rubroRoutes = require('./routes/rubro.routes');
 app.use('/api/auth', authRoutes);
 app.use('/api/emprendimientos', emprendimientoRoutes);
 app.use('/api/categorias', categoriaRoutes);
 app.use('/api/productos', productoServicioRoutes);
+app.use('/api/resenas', reseñaRoutes);
+app.use('/api/rubros', rubroRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 // Iniciar servidor
 const PORT = process.env.PORT || 4000;
