@@ -1,0 +1,43 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependency locks
+package-lock.json
+
+# Build or production folders (si los generas)
+dist/
+build/
+
+# Public files temporales
+/public/uploads/
+public/temp/
+
+# Coverage de test
+coverage/
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup y archivos temporales
+*.bak
+*.tmp
+
+# Archivos específicos del proyecto
+desencriptador.exe

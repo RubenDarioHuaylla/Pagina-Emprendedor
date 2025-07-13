@@ -6,13 +6,8 @@ const Emprendimiento = require('../models/emprendimiento.model');
 exports.crearProductoServicio = async (req, res) => {
   try {
 
-    console.log('Archivo recibido:', req.body);
-    console.log('Archivo recibido:', req.file);
-    console.log('Headers recibidos:', req.headers);
-
     const id_usuario = req.usuario.id; // Obtenido desde el token JWT
     const emprendimiento = await Emprendimiento.buscarPorUsuario(id_usuario);
-    console.log('Datos recibidos:', req.body);
     const {id_categoria, nombre, descripcion_corta, descripcion_larga, precio, unidad_medida,estado} = req.body;
 
     if (!emprendimiento) {
@@ -83,7 +78,7 @@ exports.actualizarProductoServicio = async (req, res) => {
 
 
 
-// Listar productos/servicios de un emprendimiento
+// Listar productos/servicios de un emprendimiento en panel del emprededor.
 exports.listarMisProductosServicios = async (req, res) => {
   try {
     const usuarioId = req.usuario.id;
@@ -128,14 +123,18 @@ exports.subirImagen = async (req, res) => {
 
 // Obtener un producto/servicio por ID
 exports.verProductoPorId = async (req, res) => {
-  const id = req.params.id;
   try {
-    const producto = await productoServicioModel.buscarPorId(id);
-    if (!producto) return res.status(404).json({ error: 'No encontrado' });
-    res.json(producto);
+    const id = req.params.id;
+    const info = await productoServicioModel.detalle(id);
+    const reseñas = await productoServicioModel.reseñas(id);
+
+    if (!info) return res.status(404).json({ error: 'No encontrado' });
+    res.json({success: true, data: { info, reseñas }});
+    console.log('info' , info);
+    console.log('reseñas', reseñas)
   } catch (err) {
     console.error('Error al obtener producto por ID:', err);
-    res.status(500).json({ error: 'Error del servidor' });
+    res.status(500).json({ success: false, error: 'Error al optener informacion' });
   }
 };
 
@@ -148,7 +147,7 @@ exports.eliminarProductoServicio = async (req, res) => {
     res.json({ message: 'Producto eliminado correctamente' });
   } catch (error) {
     console.error('Error al eliminar producto:', error);
-    res.status(500).json({ error: 'Error del servidor' });
+    res.status(500).json({error: 'Error del servidor' });
   }
 };
 
@@ -170,7 +169,6 @@ exports.listarProductosServicios = async (req, res) => {
     const data = await productoServicioModel.listar(filtros);
     res.json({ success: true, data });
   } catch (err) {
-    console.log('error',err)
     res.status(500).json({ success: false, error: 'Error al obtener productos' });
   }
 };

@@ -5,6 +5,10 @@ const authMiddleware = require('../middlewares/auth.middleware');
 const crearUpload = require('../middlewares/upload.middleware');
 const upload = crearUpload('logos', 'logo');
 // Ruta para crear emprendimiento (solo usuarios autenticados)
+
+
+router.get('/verificar', authMiddleware ,controller.verificarEmprendimiento);
+
 router.post('/', 
   authMiddleware, // <-- Solo verifica que esté logueado, no el rol
   controller.crearEmprendimiento

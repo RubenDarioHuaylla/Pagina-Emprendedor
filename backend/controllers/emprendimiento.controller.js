@@ -55,7 +55,7 @@ exports.crearEmprendimiento = async (req, res) => {
   }
 };
 
-
+// Para actualizar emprendimiento
 exports.actualizarEmprendimiento = async (req, res) => {
   try {
     
@@ -93,6 +93,7 @@ exports.actualizarEmprendimiento = async (req, res) => {
   }
 };
 
+
 exports.obtenerEmprendimiento = async (req, res) => {
   try {
     // Verificar que el usuario tenga el rol de emprendedor
@@ -108,6 +109,18 @@ exports.obtenerEmprendimiento = async (req, res) => {
   }
 };
 
+
+exports.verificarEmprendimiento = async (req, res) =>{
+    const id = req.usuario.id;
+    
+    const empredimiento = await Emprendimiento.buscarPorUsuario(id);
+    
+    let existe = true;
+    if(!empredimiento){
+      existe = false;
+    }
+    return res.json({hayEmpredimiento: existe});
+};
 
   // rutas publicas
 
@@ -146,7 +159,6 @@ exports.detalleEmprendimiento = async (req, res) => {
 exports.destacados = async (req, res) => {
   try {
     const destacados = await Emprendimiento.destacados();
-    console.log('Datos obtenidos', destacados)
     res.json({ 
       success: true,
       data: destacados // Envía directamente el array de emprendimientos
